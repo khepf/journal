@@ -1,4 +1,4 @@
-```
+
 The end goal is for the Pagination Buttons to have the same visual look and feel, statically and interactively, as the normal
 
 Buttons.  This might be accomplished by just copy/pasting the Button Style Overrides directly, but given that in Vuetify the
@@ -18,7 +18,7 @@ My recommendation is to keep both the Button Override Styles and the Pagination 
 Then, just comment out all the actual styles, leaving just the selectors themselves, and start putting in overrides as necessary.  Note that the way Vuetify implemented their theming will require its own little section of that overrides file, but we currently only need to worry about light theming, so you can probably just not worry about dark theming at all.
 
 The actual implementation may be somewhat different, but you're trying to match the visual effects, not the implementations.  The implementation is just a vehicle to create the actual visual effects.
-```
+
 
 
 
