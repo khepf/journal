@@ -20,3 +20,9 @@ https://ge.invisionapp.com/
 
 1. Make border disappear on click
 2. make border appear on hover
+
+> The :hover pseudo-class, also called the “pointer hover pseudo-class”, applies when a pointing device interacts with an element without necessarily activating it.
+
+> The :focus pseudo-class applies when an element is in a state that is ready to be interacted with, i.e. it has the focus of the input device.
+
+> The :active pseudo-class applies during the period in which the element is being activated. For example, if using a mouse it would be the time between when the mouse button is clicked and when it is released.
