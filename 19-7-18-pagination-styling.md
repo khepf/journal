@@ -1,5 +1,5 @@
 
-The end goal is for the Pagination Buttons to have the same visual look and feel, statically and interactively, as the normal
+> The end goal is for the Pagination Buttons to have the same visual look and feel, statically and interactively, as the normal
 Buttons.  This might be accomplished by just copy/pasting the Button Style Overrides directly, but given that in Vuetify the
 Pagination Buttons have their own separate styles, the actual Pagination Style Overrides _implementation_ may very well be
 different.
