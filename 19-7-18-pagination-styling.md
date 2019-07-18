@@ -17,3 +17,6 @@ base styles are implemented, and thus how the Overrides are implemented, they ca
 http://localhost:3000/styleguide/buttons
 
 https://ge.invisionapp.com/
+
+1. Make border disappear on click
+2. make border appear on hover
