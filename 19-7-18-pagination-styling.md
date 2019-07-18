@@ -14,6 +14,5 @@ base styles are implemented, and thus how the Overrides are implemented, they ca
 
 > The actual implementation may be somewhat different, but you're trying to match the visual effects, not the implementations.  The implementation is just a vehicle to create the actual visual effects.
 
-
-
-
+http://localhost:3000/styleguide/buttons
+https://ge.invisionapp.com/
