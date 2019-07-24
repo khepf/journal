@@ -1,4 +1,8 @@
-Seems kind of hacky to me. The basic premise here is that we:
+The end goal here is relatively straightforward: 
+- Take data from an events output, store it in a variable
+- create a click event that downloads the data into a txt file
+
+The solution I have so far seems kind of hacky to me. The basic premise here is that we:
 - create an invisible a tag
 - set element attributes for href and download
 - then trigger a click on the a tag
@@ -19,6 +23,11 @@ Seems kind of hacky to me. The basic premise here is that we:
       document.body.removeChild(element);
     }
 ```
+
+Referenced:
+https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-download-with-javascript-in-the-browser-without-a-server
+
+https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
 
 
 
