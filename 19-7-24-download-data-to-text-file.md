@@ -40,6 +40,21 @@ if (navigator.msSaveBlob) {
 https://stackoverflow.com/questions/18394871/download-attribute-on-a-tag-not-working-in-ie
 https://github.com/rndme/download/blob/master/download.js#L143
 
+```
+var csvData = new Blob([str], {type: 'text/csv;charset=utf-8;'});
+var csvURL =  null;
+if (navigator.msSaveBlob) {
+    csvURL = navigator.msSaveBlob(csvData, 'download.cv');
+} else {
+    csvURL = window.URL.createObjectURL(csvData);
+}
+var tempLink = document.createElement('a');
+tempLink.href = csvURL;
+tempLink.setAttribute('download', 'download.cv');
+tempLink.click();
+```
+https://github.com/mholt/PapaParse/issues/175
+
 
 
 
