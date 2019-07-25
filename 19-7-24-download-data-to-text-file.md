@@ -29,5 +29,16 @@ https://ourcodeworld.com/articles/read/189/how-to-create-a-file-and-generate-a-d
 
 https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
 
+Added support for IE11:
+
+```
+// IE10+ : (has Blob, but not a[download] or URL)
+if (navigator.msSaveBlob) {
+    return navigator.msSaveBlob(blob, fileName);
+}
+```
+https://stackoverflow.com/questions/18394871/download-attribute-on-a-tag-not-working-in-ie
+
+
 
 
