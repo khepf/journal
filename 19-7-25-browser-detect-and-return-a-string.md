@@ -1,7 +1,7 @@
 # Browser Detect and Return a String
 
 ```
-var sBrowser, sUsrAg = navigator.userAgent;
+let sBrowser, sUsrAg = navigator.userAgent;
 
 // The order matters here, and this may report false positives for unlisted browsers.
 
