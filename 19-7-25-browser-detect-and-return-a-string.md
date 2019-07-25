@@ -29,3 +29,4 @@ if (sUsrAg.indexOf("Firefox") > -1) {
 
 alert("You are using: " + sBrowser);
 ```
+https://developer.mozilla.org/en-US/docs/Web/API/Window/navigator
