@@ -38,6 +38,7 @@ if (navigator.msSaveBlob) {
 }
 ```
 https://stackoverflow.com/questions/18394871/download-attribute-on-a-tag-not-working-in-ie
+https://github.com/rndme/download/blob/master/download.js#L143
 
 
 
