@@ -30,3 +30,9 @@ https://ge.invisionapp.com/
 > The :not(selector) selector matches every element that is NOT the specified element/selector.
 
 > The ::before selector inserts something before the content of each selected element(s).
+
+# Pagination Button Formatting
+
+- styles/vuetify-overrides/_button-defs.scss
+- styles/vuetify-overrides/_buttons.scss
+- styles/colors.sass
