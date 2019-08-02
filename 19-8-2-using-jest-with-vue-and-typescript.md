@@ -48,6 +48,8 @@ describe('HelloWorld.vue', () => {
   })
 })
 ```
+- npm install babel-core babel-loader --save-dev
+- npm run test:unit
 
 ------
 ### Testing Vue with Jest
