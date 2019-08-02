@@ -28,11 +28,7 @@ https://vue-test-utils.vuejs.org/guides/using-with-typescript.html
 - create \_\_tests\_\_ folder in src/components
 - npm install @types/jest
 - add "jest" to "types" in tsconfig.json
-
-### Testing Vue with Jest
-https://alligator.io/vuejs/testing-vue-with-jest/
-
-### add HelloWorld.spec.ts to project
+- add HelloWorld.spec.ts to project
 ```
 // src/components/__tests__/HelloWorld.spec.ts
 import { shallowMount } from '@vue/test-utils'
@@ -48,3 +44,7 @@ describe('HelloWorld.vue', () => {
   })
 })
 ```
+
+------
+### Testing Vue with Jest
+https://alligator.io/vuejs/testing-vue-with-jest/
