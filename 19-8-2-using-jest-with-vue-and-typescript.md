@@ -1,7 +1,11 @@
 ### Using jest with typescript
 https://vue-test-utils.vuejs.org/guides/using-with-typescript.html
 - vue create hello-world
-- manually create "choose typescript"
+- manually create 
+  - choose typescript, deselect all others
+  - default choices for all others except 'Where do you prefer placing config for Babel, PostCSS, ESLint, etc.?' 
+  - Choose 'Inpackage.json'
+  
 - npm install --save-dev jest @vue/test-utils
 - add "test:unit": "jest" to scripts in package.json
 - npm install --save-dev vue-jest
