@@ -4,7 +4,7 @@ https://vue-test-utils.vuejs.org/guides/using-with-typescript.html
 - manually create 
   - choose typescript, deselect all others
   - default choices for all others except 'Where do you prefer placing config for Babel, PostCSS, ESLint, etc.?' 
-  - Choose 'Inpackage.json'
+  - Choose 'In package.json'
   
 - npm install --save-dev jest @vue/test-utils
 - add "test:unit": "jest" to scripts in package.json
