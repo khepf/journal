@@ -24,8 +24,8 @@ https://vue-test-utils.vuejs.org/guides/using-with-typescript.html
 ```
 - npm install --save-dev ts-jest
 - add "^.+\\.tsx?$": "ts-jest" to jest.transform in package.json
-- add "testRegex": "(/\__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$" to jest field in package.json
-- create \__tests__ folder in src/components
+- add "testRegex": "(/\_\_tests\_\_/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$" to jest field in package.json
+- create \_\_tests\_\_ folder in src/components
 - npm install @types/jest
 - add "jest" to "types" in tsconfig.json
 
