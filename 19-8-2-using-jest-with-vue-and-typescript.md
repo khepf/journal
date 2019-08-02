@@ -57,3 +57,6 @@ https://alligator.io/vuejs/testing-vue-with-jest/
 
 ### TypeScript - Vue Starter
 https://github.com/Microsoft/TypeScript-Vue-Starter
+
+### TypeScript - Vue Todo App
+https://github.com/DanielRosenwasser/typescript-vue-todomvc
