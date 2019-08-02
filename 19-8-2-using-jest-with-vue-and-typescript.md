@@ -54,3 +54,6 @@ describe('HelloWorld.vue', () => {
 ------
 ### Testing Vue with Jest
 https://alligator.io/vuejs/testing-vue-with-jest/
+
+### TypeScript - Vue Starter
+https://github.com/Microsoft/TypeScript-Vue-Starter
