@@ -1,4 +1,4 @@
-# A summary of systematically approaching a develpment task
+# A summary of systematically approaching a development task
 
 -Initial outline of operation
 - What is the task that needs to be accomplished?
