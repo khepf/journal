@@ -38,6 +38,7 @@ https://vue-test-utils.vuejs.org/guides/using-with-typescript.html
 - add HelloWorld.spec.ts to project
 ```
 // src/components/__tests__/HelloWorld.spec.ts
+import 'jest'
 import { shallowMount } from '@vue/test-utils'
 import HelloWorld from '../HelloWorld.vue'
 
