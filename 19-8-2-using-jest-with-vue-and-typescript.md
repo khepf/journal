@@ -93,4 +93,75 @@ https://github.com/DanielRosenwasser/typescript-vue-todomvc
   Some Content
 </modal-component>
 ```
+```
+<template>
+  <div v-if="visible" class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <button 
+          @click="onClose"
+          class="delete"
+          aria-label="close"></button>
+        <slot />
+       </div>
+      </div>
+     </div>
+  </div>
+</template>
 
+<script>
+export default {
+  props: ['visible', 'onClose']
+}
+</script>
+```
+
+```
+test('does not render whan passed visible prop', () => {
+  const wrapper = mount(Modal)
+  expect(wrapper.isEmpty()).toBe(true)
+})
+
+test('renders when passed visible prop as true', () => {
+  const wrapper = mount(Modal, {
+    propsData: {
+      visible: true
+    }
+   })
+   expect(wrapper.isEmpty()).toBe(false)
+})
+
+test('calls onClose when button is clicked', () => {
+  const onClose = jest.fn()
+  const wrapper = mount(Modal, {
+    propsData: {
+      visible: true,
+      onClose
+    }
+  })
+  wrapper.find('button').trigger('click')
+  expect(onClose).toHaveBeenCalled()
+})
+```
+### Snapshot tests
+test('renders correctly', () => {
+  const wrapper = mount(Modal, {
+    propsData: {
+      visible: true
+    }
+  })
+  expect(wrapper.html()).toMatchSnapshot()
+})
+```
+- Snapshot checks if previos snapshot exists
+  - if so, it compares snapshot to previous snapshot
+  - if not, it creates a snashot and the test passes
+``` npm install --save-dev jest-serializer-vue ``` - formats snapshot output
+```
+"jest": {
+  "snapshotSerializers": [
+    "jest-serializer-vue"
+   ],
+ }
+ ```
