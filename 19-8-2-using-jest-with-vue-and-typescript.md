@@ -64,3 +64,33 @@ https://github.com/Microsoft/TypeScript-Vue-Starter
 
 ### TypeScript - Vue Todo App
 https://github.com/DanielRosenwasser/typescript-vue-todomvc
+
+### Unit test benefits
+- Check components work correctly
+- Provide documentation
+- Easier debugging
+- Less bugs
+
+### Use compilation process (Compilers) as part of unit tests
+- Webpack (vue-loader)
+- Jest (vue-jest)
+#### Component contract
+- "If you provide me with this *input*, then I will generate this *output*"
+##### Input
+- User Action
+- Props
+- Store
+##### Output
+- Rendered output
+- Vue events
+- Function calls
+
+```
+<modal-component
+  :visible="displayModal"
+  :onClose="closeModal"
+>
+  Some Content
+</modal-component>
+```
+
