@@ -169,3 +169,18 @@ npm install --save-dev jest-serializer-vue
    ],
  }
  ```
+#### Overwrite snapshot
+``` npm run unit -- -u ```
+
+```
+test('renders correctly', () => {
+  const wrapper = mount(Modal, {
+    slots: {
+      default: '<p>some content</p>'
+    },
+    propsData: {
+      visible: true
+    }
+  })
+  expect(wrapper.html()).toMatchSnapshot()
+})
