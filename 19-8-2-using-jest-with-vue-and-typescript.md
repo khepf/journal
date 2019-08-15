@@ -145,6 +145,7 @@ test('calls onClose when button is clicked', () => {
 })
 ```
 ### Snapshot tests
+```
 test('renders correctly', () => {
   const wrapper = mount(Modal, {
     propsData: {
