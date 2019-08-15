@@ -184,3 +184,5 @@ test('renders correctly', () => {
   })
   expect(wrapper.html()).toMatchSnapshot()
 })
+### unit testing vs e2e testing
+https://vuejsdevelopers.com/2019/04/01/vue-testing-unit-vs-e2e/
