@@ -157,7 +157,10 @@ test('renders correctly', () => {
 - Snapshot checks if previos snapshot exists
   - if so, it compares snapshot to previous snapshot
   - if not, it creates a snashot and the test passes
-``` npm install --save-dev jest-serializer-vue ``` - formats snapshot output
+``` 
+npm install --save-dev jest-serializer-vue 
+``` 
+- formats snapshot output
 ```
 "jest": {
   "snapshotSerializers": [
