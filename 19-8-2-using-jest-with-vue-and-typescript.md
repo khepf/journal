@@ -237,3 +237,37 @@ describe('Favorite Movies', () => {
   })
  })
 ```
+- test.only to run only that test
+- test.skip to skip that particular test
+
+```
+// model.js
+export default class Model {
+  constructor() {
+    this.$collection = []  
+  }
+  record() {}
+  all() {}
+  find() {}
+  update() {}
+}
+```
+
+```
+// model.spec.js
+import Model from './model'
+
+test('new works', () => {
+  expect(new Model).toBeInstanceOf(Model)
+})
+
+test('model structure', () => {
+  expect(new Model).toEqual(expect.objectContaining({
+    $collection: expect.any(Array),
+    record: expect.any(Function),
+    all: expect.any(Function),
+    find: expect.any(Function),
+    update: expect.any(Function),
+  }))
+})
+```
