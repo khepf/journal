@@ -213,7 +213,7 @@ class User {
   })
 ```
 - toEqual - to check complex comparisons like arrays and objects
-
+##### beforeEach
 ```
 import movies from './movies'
 
