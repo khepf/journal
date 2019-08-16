@@ -188,3 +188,27 @@ test('renders correctly', () => {
 
 ### unit testing vs e2e testing
 https://vuejsdevelopers.com/2019/04/01/vue-testing-unit-vs-e2e/
+
+
+### UNIT TESTS
+
+```
+class User {
+  constructor(details) {
+    const { firstname, lastname } = details
+    this.firstname = firstname
+    this.lastname = lastname
+  }
+  get name() {
+    return `${this.firstname} ${this.lastname}`
+  }
+ }
+ ```
+ ```
+ describe('User', () => {
+  test('name returns full name', () => {
+    const user = new User({ firstname: 'Jane', lastname: 'Doe' })
+    expect(user.name).toBe('Jane Doe')
+    })
+  })
+```
