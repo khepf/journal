@@ -1,7 +1,7 @@
 ### Array.from()
 
 ```
-/// script.js
+// script.js
 
 const testString = 'Hello, it is very nice to meet you.';
 const strAlphabet = 'abcdefghijklmnopqrstuvwxyz';
@@ -28,6 +28,7 @@ const arrFrom2 = (str) => {
 ```
 
 ```
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +38,6 @@ const arrFrom2 = (str) => {
   <title>Document</title>
 </head>
 <body>
-  <button onClick="testAlert()">Test Alert</button>
   <button onClick="testButton()">Test Button</button>
   <script src="script.js"></script>
 </body>
