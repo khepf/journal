@@ -1,1 +1,40 @@
-1.
+1. Pick a File
+2. Find all the dispatches in there that fetch data.
+  dispatchComponentDetails(this.$store, this.componentId)
+  action:
+  export const dispatchComponentDetails = dispatch(
+  environments.actions.getComponentDetails
+  );
+  actions.getComponentDetails 
+    - goes to GET /api/cicada/components/${componentId}/detail
+    - Operation ID = getComponentDetail
+    - commitComponentDetails(environmentsContext, res.data) goes to
+      - mutation const commitComponentDetails = commit(mutations.SET_SELECTED_COMPONENT_DETAILS);
+        SET_SELECTED_COMPONENT_DETAILS(state: IEnvironmentsState, payload: any) {
+          state.selectedComponent.details = payload;
+        }
+    - state modified: state.selectedComponent.details
+    - type IEnvironmentsState
+      - ISelectedComponent, ISelectedEnvironment, IAddEnvironment, object
+    - search for getters that touch state.selectedComponent.details:
+      - export const getComponentDetails = read(environments.getters.componentDetails);
+      - wrapper: getComponentDetails()
+      
+  
+3. Replace each dispatch and associated data mutations and getters:
+  - getComponentDetails goes to GET /api/cicada/components/${componentId}/detail
+  
+  3.1. Define a new Request Creator in the appropriate requests file in /src/util/requests/cicada/.
+   - src/util/requests/cicada/componentsRequests.ts
+   look on swagger
+   - Name: method: GET Operation ID: getComponentDetail, so name is getComponentDetail
+   - Parameters: component_id = componentId: number
+   - Response Body: GetComponentDetailResponse
+   - Make interface IGetComponentDetailResponse at /src/interfaces/requests/IGetComponentDetailResponse.interface.tsIGetComponentDetailResponse.interface.ts
+   - populate request creator with SEE JOE README
+    - named getComponentDetail because Operation ID
+   - populate interface with SEE JOE README
+   
+  3.2. Comment Out Or Delete The Old Stuff
+  3.3. Update Code
+  3.4. Clean Up
