@@ -36,5 +36,24 @@
    - populate interface with SEE JOE README
    
   3.2. Comment Out Or Delete The Old Stuff
+    - the details property of ISelectedComponent src/interfaces/environments/selectedComponent.interface.ts 
+    which is in IEnvironmentState interface in src/store/Environments/environments.interface.ts
+    - state.selectedComponent.details in services.ts
+    - action getComponentDetails and its wrapper dispatchComponentDetails
+    - mutations SET_SELECTED_COMPONENT_DETAILS and its wrapper commitComponentDetails
+    - getter getters.componentDetails and wrapper getComponentDetails
   3.3. Update Code
+    - EnvironmentsPage
+      - comment out old import dispatchComponentDetails
+      - comment out public isLoading: boolean = false; and public componentDetails: object = {};
+      - replace this.componentDetails with a getter that uses readRequestDataOrNotAsked()
+      - replace the call dispatchComponentDetails with dispatchRequestIfNotNullAndCatch()
+      - replace this .isLoading with another computed prop that checks if the request data is AsyncData.Waiting
+      - update anything this.componentDetails passes into
+        - ComponentDetails.vue
+        ```
+import AsyncData from '@/util/AsyncData';
+import IGetComponentDetailResponse from '@/interfaces/requests/IGetComponentDetailResponse.interface';
+```
+SEE JOE NOTES
   3.4. Clean Up
