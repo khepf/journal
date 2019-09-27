@@ -1,0 +1,43 @@
+1. Pick a file - ComponentsPage.vue
+2. Find all the dispatches in there that fetch data.
+  - await fetchProductDetails(this.$store, this.productId);
+  - calls action fetchProductDetails
+  - action storeOptions.actions.fetchProductDetails goes to /api/cicada/products/${productId}/detail
+  - OperationID: getProductDetail
+  - Associated Getters and Mutations
+    - mutation - commitFetchedProductDetails wrapper around mutations.SET_PRODUCT_DETAILS
+    - that modifies state: state.selectedProduct.details
+    - type of module state itself is IRootState
+      -  in that type the property selectedProduct has the type ISelectedProduct
+    - getters:     
+    ```productDetails(state: IRootState): IProductDetails {
+      return state.selectedProduct.details;
+    }```
+    - getter wrapper: export const getProductDetails = read(storeOptions.getters.productDetails);
+3. Replace each dispatch and associated data mutations and getters:
+  - fetchProductDetails which goes to /api/cicada/products/${productId}/detail
+  3.1 Define a new Request Creator in the appropriate requests file in /src/util/requests/cicada/.
+    -  src/util/requests/cicada/productsRequests.ts
+    - Name: method: GET OperationId: getProductDetail so name is getProductDetail
+    - Parameters: productId: number
+    - Response Body: interface given by swagger is GetProductDetailResponse
+    - Make interface at /src/interfaces/requests/IGetProductDetailResponse.interface.ts
+    - changed PipelineRunnerDetails to new interface
+  3.2 Comment Out Or Delete The Old Stuff
+    - details property of ISelectedProduct
+     - this breaks
+      - mutations:     
+      SET_PRODUCT_DETAILS(state: IRootState, payload: IProductDetails) {
+      state.selectedProduct.details = payload;
+       },
+      - getters:
+         productDetails(state: IRootState): IProductDetails {
+            return state.selectedProduct.details;
+         },
+    - the initial state state.selectedProduct.details
+    - the action fetchProductDetails and its exported wrapper fetchProductDetails
+    - the mutation mutations.SET_PRODUCT_DETAILS and wrapper commitFetchedProductDetails
+    - the getter getters.productDetails and wrapper getProductDetails
+    - remove unneeded import fetchProductDetails from ComponentsPage.vue
+  3.3 Update Code
+  3.4 Clean Up
