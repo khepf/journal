@@ -1,0 +1,26 @@
+1. Pick a File ProductsPage.vue
+2. Find all the dispatches in there that fetch data.
+  - fetchProducts(this.$store) line 93
+    - this is a dispatch wrapper that calls the action 
+      - export const fetchProducts = dispatch(storeOptions.actions.fetchProducts); in store.ts
+      - this goes to /api/cicada/products/summaries
+      - Operation ID: getProductSummaries
+  - associated getters and mutations:
+    - mutations: commitFetchedProducts a wrapper around mutations.SET_PRODUCTS
+    - state: state.products
+      - type: IRootState and within, products has the type IProduct[] in state.interface.ts
+    - getters: getters.products wrapper getter: export const getProducts = read(storeOptions.getters.products);
+3. Replace each dispatch and associated data mutations and getters:
+  fetchProducts which goes to /api/cicada/products/summaries
+  3.1. Define a new Request Creator in the appropriate requests file in /src/util/requests/cicada/productsRequests.
+    - name: method: GET Operation ID: getProductSummaries so name will be getProductSummaries
+    - parameters: none
+    - Response Body: GetProductSummariesResponse
+      - interface will be called IGetProductSummariesResponse inside the file
+        - /src/interfaces/requests/IGetProductSummariesResponse.interface.ts
+  3.2. Comment Out Or Delete The Old Stuff
+    - fetchPoducts action and wrapper
+    - SET_PRODUCTS mutation and wrapper commitFetchedProducts
+    - getters.products and wrapper getProducts
+  3.3. Update Code
+  3.4. Clean Up
