@@ -1,0 +1,24 @@
+1. Pick a File DeploymentsPage.vue
+2. Find all the dispatches in there that fetch data.
+  - dispatchEnvironmentServices(this.$store, Number(this.environmentId)) 
+    - calls the action dispatchEnvironmentServices in services.ts 
+      - actions.fetchEnvironmentServices
+      - GET /api/cicada/environments/${environmentId}/serviceSummaries
+  - Operation ID: getServiceSummaries
+  Associated getters and mutations:
+    - mutation: commitEnvironmentServices(servicesContext, res);
+      - wrapper mutations.SET_SELECTED_ENVIRONMENT_SERVICES
+    - state: state.selectedEnvironment.services 
+      - type: IServiceState - services: ISelectedEnvironment
+    - getters.services - wrapper: export const getEnvironmentServices = read(getters.services);
+
+3. Replace each dispatch and associated data mutations and getters:
+  - fetchEnvironmentServices which hits GET /api/cicada/environments/${environmentId}/serviceSummaries
+  3.1. Define a new Request Creator in the appropriate requests file in /src/util/requests/cicada/.
+    - name: getServiceSummaries
+    - parameters: environmentId: number, expandAll?: boolean, navigate?: string, serviceId?: number
+    - Response Body: 
+    - interface: IGetServiceSummariesResponse
+  3.2. Comment Out Or Delete The Old Stuff
+  3.3. Update Code
+  3.4. Clean Up
