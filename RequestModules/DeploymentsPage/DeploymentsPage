@@ -1,16 +1,99 @@
 1. Pick a File DeploymentsPage.vue
 2. Find all the dispatches in there that fetch data.
-  - dispatchEnvironmentServices(this.$store, Number(this.environmentId)) 
+  - getEnvironmentDetail (already fixed)
+  
+  - dispatchEnvironmentServices(this.$store, Number(this.environmentId))
     - calls the action dispatchEnvironmentServices in services.ts 
       - actions.fetchEnvironmentServices
       - GET /api/cicada/environments/${environmentId}/serviceSummaries
-  - Operation ID: getServiceSummaries
-  Associated getters and mutations:
-    - mutation: commitEnvironmentServices(servicesContext, res);
-      - wrapper mutations.SET_SELECTED_ENVIRONMENT_SERVICES
-    - state: state.selectedEnvironment.services 
-      - type: IServiceState - services: ISelectedEnvironment
-    - getters.services - wrapper: export const getEnvironmentServices = read(getters.services);
+     - Operation ID: getServiceSummaries
+     - Associated mutations, state, and getters:
+      - mutations: commitEnvironmentServices wrapper for SET_SELECTED_ENVIRONMENT_SERVICES
+       - commitEnvironmentServices used in 
+        - partialRehydrationOnRefresh.ts
+        - and fetchEnvironmentServices of course
+       - SET_SELECTED_ENVIRONMENT_SERVICES wrapper is
+        - commitEnvironmentServices of course
+        - commitDeleteService which seems to never be used
+      - state referenced by mutation is state.selectedEnvironment.services
+          - type: IServiceState
+            - ISelectedEnvironment
+              - services: ISelectedService[]
+      - getters that touch state.selectedEnvironment.services
+        - getters.services - getter wrapper is getEnvironmentServices
+  
+  - fetchSelectedServiceFeatures(this.$store, {serviceId: this.serviceId,})
+    - calls the action: fetchSelectedServiceFeatures in deployments.ts
+      - moduleActions.fetchSelectedServiceFeatures
+      - GET /api/cicada/services/${serviceId}/features
+      - Operation ID: getServiceFeatures
+       - Associate mutations, state and getters:
+        - mutations: commitSetSelectedServiceFeatures wrapper for moduleMutations.SET_SELECTED_SERVICE_FEATURES
+          - commitSetSelectedServiceFeatures only used twice here in same action (fetchSelectedServiceFeatures)
+          - SET_SELECTED_SERVICE_FEATURES only used here
+        - state referenced by mutation is state.selectedServiceFeatures
+          - type for state: IDeploymentsState
+          - but selectedServiceFeatures is type IDeploymentsState.selectedServiceFeatures: AsyncData<ServiceFeature[], AxiosError>
+        - getters that touch state.selectedServiceFeatures
+          - getters.selectedServiceFeatures
+        *** continue working on errors
+      
+  - fetchDeploymentsVersions(this.$store, this.environmentId) 
+    - calls the action fetchDeploymentVersions in deployments.ts
+      moduleActions.fetchDeploymentsVersions
+      - GET /api/cicada/environments/${environmentId}/versions
+     - Operation ID: getVersions
+     - Associate mutations, state and getters:
+      - mutations: commitDeploymentsVersions wrapper for moduleMutations.SET_VERSIONS_TAB_VERSIONS
+        - commitDeploymentVersions only used here
+        - SET_VERSIONS_TAB_VERSIONS only used here
+      - state referenced by mutation is state.deploymentsPage.versions
+        - type for state: IDeploymentsState in deployments.interface.ts
+        - but versions is type IDeploymentPage.versions: object[]
+      - getters that touch state.deploymentsPage.versions:
+        - getters.versionsTabVersions - getterwrapper is getDeploymentsVersions
+   
+   3. Replace each dispatch and associated data mutations and getters:
+    - Dispatches:
+      - dispatchEnvironmentServices(this.$store, Number(this.environmentId))
+        - which hits GET /api/cicada/environments/${environmentId}/serviceSummaries
+
+      - fetchSelectedServiceFeatures(this.$store, {serviceId: this.serviceId,})
+        - which hits GET /api/cicada/services/${serviceId}/features
+          - Define a new Request Creator in the appropriate requests file in /util/requests/cicada/servicesRequests
+            name: getServiceFeatures
+            parameter: serviceId
+            response body: 
+              -interface: IGetServiceFeaturesResponse in /interfaces/requests/IGetServiceFeaturesResponse.interface.ts
+        - comment out: 
+          - IDeploymentState.selectedServiceFeatures: AsyncData<ServiceFeature[], AxiosError>;
+          - initial state at: state.selectedServiceFeatures
+          - action fetchSelectedServiceFeatures and wrapper fetchSelectedServiceFeatures
+          - mutation moduleMutations.SET_SELECTED_SERVICE_FEATURES and wrapper commitSetSelectedServiceFeatures
+          - getters: getters.selectedServiceFeatures and wrapper getSelectedServiceFeatures
+        - update code: DeploymentsMenu also uses
+        
+      - fetchDeploymentsVersions(this.$store, this.environmentId)
+        - which hits GET /api/cicada/environments/${environmentId}/versions
+           - Define a new Request Creator in the appropriate requests file in /util/requests/cicada/environmentsRequests
+            - name: getVersions
+            - parameter: environmentId: number
+            - response body: 
+              - interface = IGetVersionsResponse in /interfaces/requests/IGetEnvironmentDetailResponse.interface.ts
+       - comment out: 
+        - IDeploymentsPage.versions: object[];
+        - state.deploymentsPage.versions
+        - action fetchDeploymentVersions and wrapper fetchDeploymentVersions
+        - mutation moduleMutations.SET_VERSIONS_TAB_VERSIONS and wrapper commitDeploymentsVersions
+        - getters getters.versionsTabVersions and wrapper getDeploymentsVersions
+       - update code: VersionsTab.vue also uses
+       - dont forget change isBoolean
+       - dont forget delete old comments
+       - dont forget refreshable check at the end
+      
+      
+      
+    
 
 3. Replace each dispatch and associated data mutations and getters:
   - fetchEnvironmentServices which hits GET /api/cicada/environments/${environmentId}/serviceSummaries
@@ -20,5 +103,8 @@
     - Response Body: 
     - interface: IGetServiceSummariesResponse
   3.2. Comment Out Or Delete The Old Stuff
+    mutations: both depend on state.selectedEnvironment.services
+      - SET_SELECTED_ENVIRONMENT_SERVICES wrapper: commitEnvironmentServices
+      - SET_ADD_SERVICE wrapper: commitAddService
   3.3. Update Code
   3.4. Clean Up
