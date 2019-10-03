@@ -2,7 +2,7 @@
 2. Find all the dispatches in there that fetch data.
   - getEnvironmentDetail (already fixed)
   
-  - dispatchEnvironmentServices(this.$store, Number(this.environmentId))
+  - dispatchEnvironmentServices(this.$store, Number(this.environmentId)) line 361
     - calls the action dispatchEnvironmentServices in services.ts 
       - actions.fetchEnvironmentServices
       - GET /api/cicada/environments/${environmentId}/serviceSummaries
@@ -27,7 +27,7 @@
       - moduleActions.fetchSelectedServiceFeatures
       - GET /api/cicada/services/${serviceId}/features
       - Operation ID: getServiceFeatures
-       - Associate mutations, state and getters:
+       - Associated mutations, state and getters:
         - mutations: commitSetSelectedServiceFeatures wrapper for moduleMutations.SET_SELECTED_SERVICE_FEATURES
           - commitSetSelectedServiceFeatures only used twice here in same action (fetchSelectedServiceFeatures)
           - SET_SELECTED_SERVICE_FEATURES only used here
@@ -36,7 +36,7 @@
           - but selectedServiceFeatures is type IDeploymentsState.selectedServiceFeatures: AsyncData<ServiceFeature[], AxiosError>
         - getters that touch state.selectedServiceFeatures
           - getters.selectedServiceFeatures
-        *** continue working on errors
+        
       
   - fetchDeploymentsVersions(this.$store, this.environmentId) 
     - calls the action fetchDeploymentVersions in deployments.ts
@@ -57,6 +57,15 @@
     - Dispatches:
       - dispatchEnvironmentServices(this.$store, Number(this.environmentId))
         - which hits GET /api/cicada/environments/${environmentId}/serviceSummaries
+          - Define a new Request Creator in the appropriate requests file in /util/requests/cicada/environmentsRequests
+            - name: getServiceSummaries
+            - parameters: environmentId!: number, expandAll?: boolean, navigate?:string, serviceId?: number
+            - response body: 
+              - interface: IGetServiceSummariesResponse in /interfaces/requests/IGetServiceSummariesResponse.interface.ts
+            - comment out:
+              - old interfaces: revisit, not sure about commenting these out yet
+              
+          
 
       - fetchSelectedServiceFeatures(this.$store, {serviceId: this.serviceId,})
         - which hits GET /api/cicada/services/${serviceId}/features
@@ -92,19 +101,6 @@
        - dont forget refreshable check at the end
       
       
-      
+     going to need to do fetchSelectedEnvironmentServicesStatuses as well 
     
 
-3. Replace each dispatch and associated data mutations and getters:
-  - fetchEnvironmentServices which hits GET /api/cicada/environments/${environmentId}/serviceSummaries
-  3.1. Define a new Request Creator in the appropriate requests file in /src/util/requests/cicada/.
-    - name: getServiceSummaries
-    - parameters: environmentId: number, expandAll?: boolean, navigate?: string, serviceId?: number
-    - Response Body: 
-    - interface: IGetServiceSummariesResponse
-  3.2. Comment Out Or Delete The Old Stuff
-    mutations: both depend on state.selectedEnvironment.services
-      - SET_SELECTED_ENVIRONMENT_SERVICES wrapper: commitEnvironmentServices
-      - SET_ADD_SERVICE wrapper: commitAddService
-  3.3. Update Code
-  3.4. Clean Up
