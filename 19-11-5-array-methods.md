@@ -2,17 +2,17 @@ https://www.decipherzone.com/blog-detail/javascript-array
 
 ```const fruits = ['banana', 'apple', 'orange', 'watermelon', 'apple', 'orange', 'grape', 'apple'];```
 
-// remove duplicates from array (2 methods to do so)
+### remove duplicates from array (2 methods to do so)
 
 ```const uniqueFruits = Array.from(new Set(fruits));```
 
 ```const uniqueFruits2 = [...new Set(fruits)];```
 
-// change a particular value in an array
+### change a particular value in an array
 
 ```fruits.splice(0,2, 'potato', 'tomato');```
 
-// map through array without using .map()
+### map through array without using .map()
 
 ```const friends = [
     { name: 'John', age: 22 },
@@ -26,10 +26,10 @@ https://www.decipherzone.com/blog-detail/javascript-array
 
 ```const friendsNames = Array.from(friends, ({name}) => name);```
 
-// empty an array
+### empty an array
 ```const groceries = ['milk', 'butter', 'napkins'];```
 ```groceries.length = 0;```
 
-// convert an array to an object
+### convert an array to an object
 ```const veggies = ['onion', 'green pepper', 'carrot', 'broccoli'];```
 ```const veggiesObj = { ...veggies };```
