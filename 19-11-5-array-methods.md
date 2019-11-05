@@ -21,7 +21,9 @@ https://www.decipherzone.com/blog-detail/javascript-array
     { name: 'Maria', age: 22 },
     { name: 'Monica', age: 21 },
     { name: 'Martha', age: 19 },
-]```
+]
+```
+
 ```const friendsNames = Array.from(friends, ({name}) => name);```
 
 // empty an array
