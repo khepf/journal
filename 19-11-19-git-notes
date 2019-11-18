@@ -1,0 +1,26 @@
+### Git Notes
+
+Git status
+Git add src
+Git commit -m ‘some message'
+Git commit —amend
+Git branch feature/deleteModalUpdates
+Git reset —hard origin/dev // resets to remote dev
+Git reset —hard HEAD // resets to the current branch’s head
+Git checkout feature/deleteModalUpdates
+git checkout -b newbranchname
+Git push -u origin head
+
+Git branch -D whateverBranch
+
+git fetch && git merge origin/dev
+
+When starting a new branch from mainline, always do `git checkout dev && git pull` then do your `git checkout -b whichever-new-branch`
+
+Discarding local changes (permanently) to a file: git checkout -- <file>
+
+
+*** Git blame
+
+Git version bump:
+git fetch && git checkout deployments-fetchDeploymentsVersions && git pull && npm version patch && git push --tags && git push
