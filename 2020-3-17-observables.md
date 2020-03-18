@@ -91,3 +91,53 @@ this.firstObsSubscription = customIntervalObservable.pipe(filter(data => {
  }
  ```
  #### Subjects
+ - A generic type where you define which data will eventually be emitted
+ - you only use Subjects to communicate across components through services
+ - if you aren't subscribing to an event emitter, then it is probably an Output
+ - if you do subscribe manually, then it is a Subject
+```
+// user.service.ts
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+
+@Injectable({providedIn: 'root'})
+export class UserService {
+  activatedEmitter = new Subject<boolean>();
+}
+```
+```
+// user.component.ts
+import { userService } from '../user.service';
+
+export class UserComponent implements OnInit {
+  constructor(private userService: UserService) {}
+  
+  onActivate() {
+  this.userService.activatedEmitter.next(true);
+  }
+}
+```
+```
+// app.component.ts
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { userService } from '../user.service';
+import { Subscription } from 'rxjs';
+
+export class AppComponent implements OnInit, OnDestroy {
+  userActivated = false;
+  private activatedSub: Subscription;
+  
+  constructor(provate userService: UserService) {}
+  
+  ngOnInit() {
+    this.activatedSub = this.userService.activatedEmitter.subscribe(didActivate => {
+      this.userActivated = didActivate;
+    });
+  }
+  
+  ngOnDestroy(): void {
+    this.activatedSub.unsubscribe();
+  }
+}
+```
+
